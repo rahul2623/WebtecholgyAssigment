@@ -1,0 +1,42 @@
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.PrintWriter;
+
+@WebServlet("/CookieServlet")
+public class CookieServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+        
+        // Check if the cookie exists
+        Cookie[] cookies = request.getCookies();
+        boolean isCookiePresent = false;
+
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if ("tempCookie".equals(cookie.getName())) {
+                    isCookiePresent = true;
+                    out.println("<p>Cookie is present.</p>");
+                    break;
+                }
+            }
+        }
+        
+        // If cookie is not present, create it with 1-minute expiration
+        if (!isCookiePresent) {
+            Cookie tempCookie = new Cookie("tempCookie", "sampleValue");
+            tempCookie.setMaxAge(60); // Expires in 60 seconds
+            response.addCookie(tempCookie);
+            out.println("<p>Cookie created and will expire in 1 minute.</p>");
+        } else {
+            out.println("<p>Cookie has expired.</p>");
+        }
+    }
+}
