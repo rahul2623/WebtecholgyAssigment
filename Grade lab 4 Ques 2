@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>To-Do List with Session</title>
+</head>
+<body>
+<h2>Your To-Do List</h2>
+
+<!-- Form to add a new item to the to-do list -->
+<form action="TodoList.jsp" method="post">
+<label for="item">Add a new item:</label>
+<input type="text" id="item" name="item" required>
+<button type="submit">Add Item</button>
+</form>
+
+<!-- Display the current to-do list -->
+<h3>Items in Your To-Do List:</h3>
+<ul>
+String item : todoList
+</ul>
+</body>
+</html>
