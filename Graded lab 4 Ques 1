@@ -1,0 +1,28 @@
+<html>
+<head>
+<title>Session-Based Visit Counter</title>
+</head>
+ 
+<body>
+<h2>Welcome to the Visit Counter Page!</h2>
+<p>Refresh the page to see the visit count increase!</p>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Visit Counter</title>
+</head>
+<body>
+<h1>Welcome to the Visit Counter Page!</h1
+
+Integer visitCount = (Integer) session.getAttribute("visitCount"); if (visitCount == null) {
+visitCount = 1;
+} else { visitCount++;
+}
+session.setAttribute("visitCount", visitCount);
+
+<p>You have visited this page <%= visitCount %> times during this session.</p>
+</body>
+</html>
